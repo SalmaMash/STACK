@@ -1,0 +1,238 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden; /* ✅ عدلناه بدل hidden */
+  }
+  
+
+#background {
+    width: 100%;
+    background-color: black;
+    color: #f2af08;
+    z-index: 0;
+
+}
+
+  
+  .countaier {
+    position: relative;
+    width: 100%;
+    min-height:550px;
+    
+  }
+  section {
+    margin: 0;
+    position: relative;
+    width: 100%;
+    height: 150vh; /* يغطي كامل الشاشة */
+  }
+  section p {
+    margin-top: -10vh;
+    padding-top: 20vh;
+    display: flex;
+    justify-content: center;
+    color: #f2af08;
+    font-size: clamp(2rem, 5vw, 3rem); /* حجم متجاوب */
+    font-weight: bold;
+    -webkit-text-stroke: 1.5px black; /* سمك وحد للنص */
+
+        animation: bounce; /* referring directly to the animation's @keyframe declaration */
+        animation-duration: 2s; /* don't forget to set a duration! */
+        text-shadow:
+    -1px -1px 0 black,
+     1px -1px 0 rgb(249, 245, 245),
+    -1px  1px 0 rgb(255, 255, 255),
+     1px  1px 0 rgb(245, 240, 240);
+    }
+  
+  
+  
+h1 {  
+    
+   white-space: nowrap;
+    position: absolute;
+    font-size: clamp(1.5rem, 5vw, 4rem);
+    font-weight: bold;
+    letter-spacing: 3px;  
+
+  }
+
+  
+.stack {
+    color: chocolate;
+    top: 35%;
+    right: 50%;
+    left: 40vw;
+    transform: translateX(-50%);
+        transform: translate(-50%, -50%);
+    font-size: clamp(2rem, 5vw, 3rem);
+
+
+}
+
+.pop {
+    color: rgb(195, 255, 0);
+
+    top: 10%;
+    bottom: 20%;
+    animation: floatLeftRight 6s ease-in-out infinite;
+}
+
+.push {
+    color: rgb(195, 255, 0);
+
+    top: 10%;
+    right: 5%;
+    animation: floatRightLeft 5s ease-in-out infinite;
+}
+
+.peek {
+    color: rgb(218, 197, 17);
+
+    bottom: 20%;
+    right: 10%;
+    animation: floatUpDown 3s ease-in-out infinite;
+}
+
+.dsiplay {
+    color: rgb(255, 242, 0);
+
+    top: 60%;
+    left: 10%;
+    animation: floatLeftRight 4s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes floatLeftRight {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(20px);
+    }
+}
+
+@keyframes floatRightLeft {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-20px);
+    }
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* توسيط أفقي */
+    justify-content: center; /* لو بدك توسيط عامودي كمان */
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+#stack-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    align-items: center;
+    height: 300px;
+    width: 150px;
+    border: 3px solid #f2af08;
+    background: rgba(255, 255, 255, 0.05); /* شبه شفاف */
+    padding: 10px;
+    margin-bottom: 20px;
+    overflow: auto;
+    border-radius: 10px;
+  }
+  
+  .box {
+    width: 100px;
+    height: 40px;
+    background: #f2af08;
+    color: black;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin-top: 6px;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s;
+  }
+  
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    background: transparent;
+    color: #f2af08;
+    border: 2px solid #f2af08;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+  }
+  
+  button:hover {
+    background: #f2af08;
+    color: black;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    width: 140px;
+    margin: 5px;
+    border: 2px solid #f2af08;
+    border-radius: 6px;
+    background: black;
+    color: #f2af08;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  #peekModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #111;
+    color: #f2af08;
+    padding: 20px 30px;
+    border: 2px solid #f2af08;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #f2af08;
+    z-index: 999;
+  }
+  
+  #peekModal button {
+    margin-top: 15px;
+    background: #f2af08;
+    color: black;
+  }
+  

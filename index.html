@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stack Animation</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+
+    <div id="background">
+        <div class="countaier">
+            <h1 class="stack">STACK</h1>
+            <h1 class="pop">POP()</h1>
+            <h1 class="push">PUSH()</h1>
+            <h1 class="peek">PEEK()</h1>
+            <h1 class="dsiplay">DISPLAY()</h1>
+        </div>
+
+    </div>
+
+
+    <section id="section">
+        <p>Last In First Out (LIFO)</p>
+
+
+        <div class="wrapper">
+            <h2>Stack Visualizer</h2>
+
+            <input type="text" id="value-input" placeholder="Enter a value" />
+
+            <div id="stack-container"></div>
+
+            <div class="buttons">
+                <button onclick="pushBox()">Push</button>
+                <button onclick="popBox()">Pop</button>
+                <button onclick="peekBox()">Peek</button>
+                <button onclick="clearStack()">Clear</button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="peekModal">
+            <p id="peekValue">Top element: </p>
+            <button onclick="closeModal()">Close</button>
+        </div>
+
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.dots.min.js"></script>
+    <script>
+        VANTA.DOTS({
+            el: "#background",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xf2af08,
+            backgroundColor: 0x000000,
+            spacing: 48.00,
+            showLines: false
+        })
+        VANTA.DOTS({
+            el: "#section",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xf2af08,
+            backgroundColor: 0x000000,
+            spacing: 48.00,
+            showLines: false
+        })
+
+        let stack = [];
+
+        function pushBox() {
+            const input = document.getElementById("value-input");
+            const value = input.value.trim();
+            if (value === "") return;
+
+            stack.push(value);
+            const box = document.createElement("div");
+            box.className = "box";
+            box.innerText = value;
+            document.getElementById("stack-container").appendChild(box);
+            input.value = "";
+        }
+
+        function popBox() {
+            if (stack.length === 0) {
+                showPeek("Stack is empty!");
+                return;
+            }
+            stack.pop();
+            const container = document.getElementById("stack-container");
+            container.removeChild(container.lastChild);
+        }
+
+        function peekBox() {
+            if (stack.length === 0) {
+                showPeek("Stack is empty!");
+                return;
+            }
+            const topValue = stack[stack.length - 1];
+            showPeek(`Top element: ${topValue}`);
+        }
+
+        function clearStack() {
+            stack = [];
+            const container = document.getElementById("stack-container");
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+        }
+
+        function showPeek(text) {
+            const modal = document.getElementById("peekModal");
+            const valueEl = document.getElementById("peekValue");
+            valueEl.textContent = text;
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("peekModal").style.display = "none";
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
